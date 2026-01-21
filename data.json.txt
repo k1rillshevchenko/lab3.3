@@ -1,0 +1,16 @@
+[
+  {
+    "FullName": "Іванов Іван",
+    "Faculty": "ФІТ",
+    "Year": 2,
+    "Department": "Кафедра ТТП",
+    "Room": "405"
+  },
+  {
+    "FullName": "Петренко Петро",
+    "Faculty": "ММФ",
+    "Year": 1,
+    "Department": "Кафедра Мі",
+    "Room": "212"
+  }
+]
