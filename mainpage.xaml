@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LAB_3._2.MainPage"
+             Title="JSON Диспетчер Гуртожитку">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="15" RowSpacing="10">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Відкрити" Clicked="OnOpenClicked" BackgroundColor="DarkBlue" />
+            <Button Text="Додати" Clicked="OnAddClicked" BackgroundColor="DarkBlue" />
+            <Button Text="Зберегти" Clicked="OnSaveClicked" BackgroundColor="Navy" />
+            <Button Text="Про програму" Clicked="OnAboutClicked" BackgroundColor="Gray" />
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="5">
+            <Label Text="Пошук:" FontAttributes="Bold" />
+            <Grid ColumnDefinitions="*, *, *">
+                <Entry x:Name="SearchName" Placeholder="ПІБ" TextChanged="OnFilterChanged" Grid.Column="0"/>
+                <Entry x:Name="SearchFaculty" Placeholder="Факультет" TextChanged="OnFilterChanged" Grid.Column="1"/>
+                <Entry x:Name="SearchYear" Placeholder="Курс" TextChanged="OnFilterChanged" Keyboard="Numeric" Grid.Column="2"/>
+            </Grid>
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="2" x:Name="StudentsList" SelectionMode="None">
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="2*, *, *, *" Padding="5" BackgroundColor="Silver">
+                    <Label Text="ПІБ" FontAttributes="Bold" Grid.Column="0"/>
+                    <Label Text="Факультет" FontAttributes="Bold" Grid.Column="1"/>
+                    <Label Text="Курс" FontAttributes="Bold" Grid.Column="2"/>
+                    <Label Text="Кімн." FontAttributes="Bold" Grid.Column="3"/>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="2*, *, *, *" Padding="5">
+                        <Label Text="{Binding FullName}" Grid.Column="0"/>
+                        <Label Text="{Binding Faculty}" Grid.Column="1"/>
+                        <Label Text="{Binding Year}" Grid.Column="2"/>
+                        <Label Text="{Binding Room}" Grid.Column="3"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnItemTapped" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <HorizontalStackLayout Grid.Row="3" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Вихід" Clicked="OnExitClicked" BackgroundColor="Red" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
